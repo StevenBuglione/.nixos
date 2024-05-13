@@ -85,6 +85,7 @@
     extraConfig = {
       core = {
         editor = "vim"; # Set your preferred text editor for Git
+        sshCommand = "ssh -i ~/.ssh/id_rsa -o IdentitiesOnly=yes";
       };
       pull = {
         rebase = "true"; # Enable auto-rebasing when pulling
