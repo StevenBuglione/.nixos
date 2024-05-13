@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -70,8 +70,31 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
 
-  
+  # Dotfile configuration
+  # Ensure the directory exists
+  home.activation ={
+    createSopsDir = lib.hm.dag.entryAfter ["writeBoundary"] '' mkdir -p $HOME/.config/sops/age '';
+    setPermissions = lib.hm.dag.entryAfter ["createSopsDir"] '' chmod 0700 $HOME/.config/sops/age '';
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Steven Buglione";
+    userEmail = "stevenbuglione1@gmail.com";
+    extraConfig = {
+      core = {
+        editor = "vim"; # Set your preferred text editor for Git
+      };
+      pull = {
+        rebase = "true"; # Enable auto-rebasing when pulling
+      };
+      color = {
+        ui = "auto"; # Enable color output in Git commands
+      };
+    };
+  };
+
+
 
 }
