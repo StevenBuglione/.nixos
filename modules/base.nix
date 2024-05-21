@@ -4,11 +4,11 @@
   nuenv,
   ...
 } @ args: {
-  nixpkgs.overlays =
-    [
-      nuenv.overlays.default
-    ]
-    ++ (import ../overlays args);
+  # nixpkgs.overlays =
+  #   [
+  #     nuenv.overlays.default
+  #   ]
+  #   ++ (import ../overlays args);
 
   # auto upgrade nix to the unstable version
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/tools/package-management/nix/default.nix#L284
@@ -24,6 +24,8 @@
     zstd
     unzipNLS
     p7zip
+
+    vscode
 
     # Text Processing
     # Docs: https://github.com/learnbyexample/Command-line-text-processing
